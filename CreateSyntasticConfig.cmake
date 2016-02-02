@@ -16,7 +16,9 @@ function(create_syntastic_config)
   separate_arguments(FLAGS)
 
   foreach(FLAG IN LISTS FLAGS)
-    file(APPEND "${CONFIG_FILE}" "${FLAG}\n")
+    if (NOT "${FLAG}" STREQUAL "-fdiagnostics-color=always")
+      file(APPEND "${CONFIG_FILE}" "${FLAG}\n")
+    endif()
   endforeach()
 endfunction()
 
